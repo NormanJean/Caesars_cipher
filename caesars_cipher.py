@@ -10,3 +10,4 @@ class CaesarsCipher:
         pass
 
 if __name__ == '__main__':
+    phrase = CaesarsCipher
