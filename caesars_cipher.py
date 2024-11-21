@@ -13,4 +13,3 @@ class CaesarsCipher:
 if __name__ == '__main__':
     phrase = CaesarsCipher
     phrase.encrypt(5,'Hello, world!')
-    print()
