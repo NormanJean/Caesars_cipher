@@ -7,7 +7,9 @@ class CaesarsCipher:
         pass
 
     def encrypt(self, message_encrypt):
-        pass
+        print(self, message_encrypt)
+
 
 if __name__ == '__main__':
     phrase = CaesarsCipher
+    phrase.encrypt(5,'Hello, world!')
