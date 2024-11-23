@@ -10,6 +10,8 @@ class CaesarsCipher:
         )
 
     def decrypt(self, message):
+        self.__encryption = []
+        self.__crypto_key = 0
         for n in range(len(self.symbols) + 1):
             self.__phrase = []
             for i in message:
@@ -20,17 +22,27 @@ class CaesarsCipher:
                         self.__phrase.append(index)
             decrypt_phrases = {n: "".join(self.__phrase)}
             for key in decrypt_phrases.values():
-                a = key.split(" ")
+                phrase = key.split(" ")
                 counter = 0
-                for x in a:
+                for x in phrase:
                     if x != "":
                         d = enchant.Dict("en_US")
                         if d.check(x) is True:
                             counter += 1
                             if counter > 1:
-                                print(f"Ключ к шифру: {n}")
-                                print(f"Расшифрованная фраза: {' '.join(a)}")
+                                self.__encryption.append(' '.join(phrase))
+                                self.__crypto_key = n
                                 break
+
+        text1 = f'Фраза расшифрована: {' '.join(self.__encryption)} '
+        text2 = f'Ключ к шифру: {self.__crypto_key} '
+        print(text1)
+        print(text2)
+        path_file = input('Укажите путь к папке для записи: ')
+        with (open(path_file + '/decryption.txt', 'a', encoding='utf-8')
+              as file_path):
+            file_path.write(text1)
+            file_path.write(text2)
 
     def encrypt(self, message, key):
         self.__phrase = []
@@ -43,7 +55,12 @@ class CaesarsCipher:
                 for index in self.symbols[index]:
                     self.__phrase.append(index)
             encrypt_phrase = "".join(self.__phrase)
-        print(f"Фраза зашифрована: {encrypt_phrase}")
+        text = f'Фраза зашифрована: {encrypt_phrase} '
+        print(text)
+        path_file = input('Укажите путь к папке для записи: ')
+        with (open(path_file + '/encryption.txt', 'a', encoding='utf-8')
+              as file_path):
+            file_path.write(text)
 
 
 if __name__ == "__main__":
